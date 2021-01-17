@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=d, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <audio src="dog.mp3" id="player"></audio>
+    <div class="root">
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+        <div class="cell"><img  class="active" src="luka.jpg" alt=""></div>
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+        <div class="cell"><img src="luka.jpg" alt=""></div>
+    </div>
+    <div id="counter-element"></div>
+    <style>
+        img {
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            display: none;
+        }
+        .active {
+            display: flex;
+        }
+        .root {
+            width: 220px;
+            border: 1px solid brown;
+            border-radius: 15%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .cell {
+            border: 1px solid black;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        let doc = document;
+        let counter = 0;
+        let counterElement = doc.getElementById('counter-element');
+        let player = doc.getElementById('player');
+        setInterval(() => {
+
+            let activeImgs = doc.getElementsByClassName('active');
+            activeImgs[0].className = '';
+
+            let x = Math.floor(Math.random() * (8 - 0 + 1)) + 0;
+
+            let allImgs = doc.getElementsByTagName('img');
+            allImgs[x].className = 'active';
+
+            allImgs[x].onclick = () => {
+                counter++;
+                counterElement.innerText = counter;
+                player.currentTime = 0;
+                player.play();
+            }
+        }, 1000);
+
+    </script>
+</body>
+</html>
